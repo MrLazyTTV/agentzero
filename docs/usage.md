@@ -28,6 +28,9 @@ Agent Zero might then:
 3. Use the `code_execution_tool` to execute a Python script that performs the graph creation and key points highlighting, using the extracted data and the news dates as inputs.
 4. Return the final chart that you'll find in `/work_dir`, responding to the user with the `response_tool`.
 
+> [!NOTE]
+> The first run of `code_execution_tool` may take a while as it downloads and builds the Agent Zero Docker image. Subsequent runs will be faster.
+
 This example demonstrates how to combine multiple tools to achieve an analysis task. By mastering prompt engineering and tool usage, you can unlock the full potential of Agent Zero to solve complex problems.
 
 ## Memory Management
