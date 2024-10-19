@@ -8,6 +8,11 @@ The following guide provides both quick start instructions for the installation 
 
 ## Windows, macOS and Linux Setup Guide
 
+> [!NOTE]  
+> Linux instructions are provided as general instructions for any Linux distribution. If you're using a distribution other than Debian/Ubuntu, you may need to adjust them accordingly.
+>
+> For Debian/Ubuntu, just follow the macOS instructions, as they are the same.
+
 1. **Install Docker (Docker Desktop application):** 
 - Simply put, Docker is a way of running virtual computers on your machine. These are lightweight, disposable and isolated from your operating system, so it is a way to safely sandbox Agent Zero.
 - Agent Zero only connects to the Docker container when it needs to execute code and commands. The frameworks itself runs on your machine.
@@ -18,6 +23,15 @@ The following guide provides both quick start instructions for the installation 
 
 <img src="res/setup/image-8.png" alt="docker download" width="200"/>
 <br><br>
+
+> [!IMPORTANT]
+> **Linux Users:** You can install both Docker Desktop or docker-ce (Community Edition). 
+> For Docker Desktop, follow the instructions for your specific Linux distribution [here](https://docs.docker.com/desktop/install/linux-install/). 
+> For docker-ce, follow the instructions [here](https://docs.docker.com/engine/install/).
+>
+> If you're using docker-ce, you will need to add your user to the `docker` group to be able to run docker commands without sudo. You can do this by running the following command in your terminal: `sudo usermod -aG docker $USER`. Then log out and log back in for the changes to take effect.
+>
+> Login in the Docker CLI with `docker login` and provide your Docker Hub credentials.
 
 1.3. Run the installer and go through the installation process. It should be even shorter than Conda installation, you can leave everything to default. On macOS, the installer is a "dmg" image, so just drag and drop the application to your Applications folder like always.
 
@@ -44,11 +58,6 @@ No need to create images or containers, the framework will do that for you. Howe
 > communicate with the Docker daemon.
 
 ![docker socket macOS](res/setup/macsocket.png)
-
-> [!NOTE]
-> **Linux Users:** If you're using Linux, you can install both Docker Desktop or docker-ce (Community Edition). 
-> For Docker Desktop, follow the instructions for your specific Linux distribution [here](https://docs.docker.com/desktop/install/linux-install/). 
-> For docker-ce, follow the instructions [here](https://docs.docker.com/engine/install/).
 
 2. **Download Agent Zero:**
 
@@ -186,6 +195,11 @@ Once you've downloaded some models, you might want to check which ones you have 
 3. Visual Studio Code or any other code editor is not mandatory, but it makes it easier to navigate and edit files.
 4. Docker is not mandatory, but running Agent Zero without Docker is actually more complicated and can be very dangerous, so we will be covering the easier and recommended way - using Docker Desktop application.
 5. Git/GitHub is not mandatory, you can download the framework files through your browser. We will not be showing how to use Git in this tutorial.
+
+> [!NOTE]
+> Linux instructions are provided as general instructions for any Linux distribution. If you're using a distribution other than Debian/Ubuntu, you may need to adjust the instructions accordingly.
+>
+> For Debian/Ubuntu, just follow the macOS instructions, as they are the same.
 
 ## 1. Install Conda (miniconda)
 - Conda is a Python environment manager, it will help you keep your projects and installations separated. 
