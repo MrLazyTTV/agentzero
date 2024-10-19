@@ -134,23 +134,28 @@ Extensions can be found in `python/extensions` directory.
 ## Directory Structure
 | Directory | Description |
 | --- | --- |
-| `/bundle` | Contains the scripts for bundling the project into a single exe file for easy distribution. |
-| `/docker` | Dockerfiles and related files for building Docker image |
-| `/docs` | Quickstart and installation guide |
-| `/instruments` | Instruments for interacting with the environment |
-| `/knowledge` | Knowledge base for storing and retrieving information |
-| `/logs` | HTML chat log files |
-| `/memory` | Memory storage for storing and retrieving information |
-| `/prompts` | System and tools prompts folders |
-| `/python` | Python code for the main system and tools |
-| `/python/extensions` | Extensions for the main system |
-| `/tests` | Unit tests for the project |
-| `/tmp/chats` | Chats files storage directory |
-| `/webui` | Web UI |
-| `/work_dir` | Working directory for the Agent |
+| `/agent-zero-files` | Directory for configuration files (preinstalled binaries versions).
+| `./bundle` | Contains the scripts for bundling the project into a single exe file for easy distribution. |
+| `./docker` | Dockerfiles and related files for building Docker image |
+| `./docs` | Quickstart and installation guide |
+| `./instruments` | Instruments for interacting with the environment |
+| `./knowledge` | Knowledge base for storing and retrieving information |
+| `./logs` | HTML CLI-style chat log files |
+| `./memory` | Memory storage for storing and retrieving information |
+| `./prompts` | System and tools prompts folders |
+| `./python` | Python code for the main system and tools |
+| `./python/extensions` | Extensions for the main system |
+| `./tests` | Unit tests for the project |
+| `./tmp/chats` | Chat contexts storage directory |
+| `./webui` | Web UI |
+| `./work_dir` | Working directory for the Agent |
 
 # Customization
-Agent Zero's strength lies in its flexibility. This section details how to customize various aspects of the framework, tailoring it to your specific needs and preferences.
+Agent Zero's strength lies in its flexibility. This section details how to customize various aspects of the framework, tailoring it to your specific needs and preferences. 
+
+> [!IMPORTANT]
+> If you're using the preinstalled binaries version, you can find the configuration files in the `agent-zero-files` directory. 
+> Otherwise, you can find them in the main directory.
 
 ## Custom Prompts
 ### Changing the System Prompt Folder
@@ -171,7 +176,13 @@ The `AgentConfig` class is present in both `agent.py` and `initialize.py` and pr
 
 - **Rate Limiting:** Control API usage and prevent rate limit errors by setting `rate_limit_seconds` and `rate_limit_requests`.
 
-- **Docker and SSH:** Configure Docker and SSH settings for code execution, if needed. If you need to configure SSH to run on another machine, such as a remote VM, see more in 
+- **Docker and SSH:** Configure Docker and SSH settings for code execution, if needed. If you need to configure SSH to run on another machine, such as a remote VM, see more in [Usage](usage.md#using-code_execution_tool-outside-of-the-docker-container).
+
+## Adding Instruments
+To create a new Instrument, follow these steps:
+1. Create a new folder with the name of your instrument (without spaces) inside `instruments/custom`.
+2. Inside this folder, create a `.md` file with the description of the instrument and a `.sh` script (or other executable) with the actual implementation. The `.md` file acts as the interface for the Agent to interact with the Instrument, and the agent will call the `.sh` with the given user arguments. The agent will parse the `.md` file, using the Instrument's name, description, and arguments described in it.
+3. The agent will automatically detect and use your custom instruments.
 
 ## Adding Tools
 While good prompting can often achieve the desired behavior, sometimes custom tools are necessary.
@@ -179,12 +190,6 @@ While good prompting can often achieve the desired behavior, sometimes custom to
 1. Create a new file named `agent.system.tool.$TOOL_NAME.md` inside your `prompts/$SUBDIR` directory. This file will contain the prompt for your custom tool.
 2. Open `agent.system.tools.md` and add a reference to your new tool prompt.
 3. If your tool requires specific code or external API calls, create a Python file for it in the `python/tools` directory, implementing the `Tool` base class.
-
-## Adding Instruments
-To create a new Instrument, follow these steps:
-1. Create a new folder with the name of your instrument (without spaces) inside `instruments/custom`.
-2. Inside this folder, create a `.md` file with the description of the instrument and a `.sh` script (or other executable) with the actual implementation. The `.md` file acts as the interface for the Agent to interact with the Instrument, and the agent will call the `.sh` with the given user arguments. The agent will parse the `.md` file, using the Instrument's name, description, and arguments described in it.
-3. The agent will automatically detect and use your custom instruments.
 
 ## Adding Extensions
 To create a new extension, follow these steps:
@@ -194,6 +199,6 @@ To create a new extension, follow these steps:
 4. Ensure that the extension is compatible with the main system and does not introduce any conflicts or errors.
 
 > [!NOTE]  
-> If you believe your custom tool, instrument or extension could bring value to the community, consider contributing 
-> it to the main repository by making a pull request. This will make it available for others to use and benefit from your work. 
+> If you believe your custom tool, instrument or extension could bring value to the community, consider contributing it to the main repository by making a pull request. 
+> This will make it available for others to use and benefit from your work. 
 > See [Contributing](contribution.md) for more information.
