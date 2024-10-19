@@ -8,7 +8,7 @@ The following guide provides both quick start instructions for the installation 
 
 ## Windows, macOS and Linux Setup Guide
 
-> [!NOTE]  
+> [!IMPORTANT]  
 > Linux instructions are provided as general instructions for any Linux distribution. If you're using a distribution other than Debian/Ubuntu, you may need to adjust them accordingly.
 >
 > For Debian/Ubuntu, just follow the macOS instructions, as they are the same.
@@ -24,7 +24,7 @@ The following guide provides both quick start instructions for the installation 
 <img src="res/setup/image-8.png" alt="docker download" width="200"/>
 <br><br>
 
-> [!IMPORTANT]
+> [!NOTE]
 > **Linux Users:** You can install both Docker Desktop or docker-ce (Community Edition). 
 > For Docker Desktop, follow the instructions for your specific Linux distribution [here](https://docs.docker.com/desktop/install/linux-install/). 
 > For docker-ce, follow the instructions [here](https://docs.docker.com/engine/install/).
@@ -40,7 +40,6 @@ The following guide provides both quick start instructions for the installation 
 
 <img src="res/setup/image-12.png" alt="docker install" width="300"/>
 <br><br>
-
 
 1.4. Once installed, you should see Docker Desktop application on your Windows/Mac machine. 
 
@@ -71,7 +70,7 @@ No need to create images or containers, the framework will do that for you. Howe
 3. **Configure API Keys:** Duplicate `example.env`, rename it to `.env`, and add your API keys. See more in detail [here](#5-configure-agent-zero).
 4. **Run Agent Zero (Web UI):** Execute `./agent-zero` in your terminal or run the `.exe` file directly. This will start the Web UI on your local machine after loading the dependencies.
 
-> [!IMPORTANT]
+> [!WARNING]
 > The first time it needs to execute code, Docker image will be downloaded and deployed, it might take some time. 
 > Be patient when seeing `Initializing docker container agent-zero-exe for safe code execution...`.
 
@@ -96,7 +95,7 @@ To update Agent Zero to the latest version, follow these steps:
 - **Using Git/GitHub:** Pull the latest version of the Agent Zero repository with Git/GitHub. The custom knowledge, solutions, memory, and other data will get ignored by Git, so you don't need to worry about losing any of your custom data. The same goes for your .env file with all of your API keys.
 - **Manual Update:** Alternatively, you can manually download the latest version of Agent Zero from the [releases page](https://github.com/frdel/agent-zero/releases). The only folders that you must save to retain custom data are the following: `/memory`, `/knowledge`. If you have created custom `instruments` or `prompts` you must save their dirs as well.
 
-> [!IMPORTANT]  
+> [!WARNING]  
 > If you update manually, beware: save your .env file with the API keys, and look for new dependencies in requirements.txt. 
 > If any changes are made in the updated version, you have to execute this command inside the a0 conda env after activating it:
       
@@ -196,7 +195,7 @@ Once you've downloaded some models, you might want to check which ones you have 
 4. Docker is not mandatory, but running Agent Zero without Docker is actually more complicated and can be very dangerous, so we will be covering the easier and recommended way - using Docker Desktop application.
 5. Git/GitHub is not mandatory, you can download the framework files through your browser. We will not be showing how to use Git in this tutorial.
 
-> [!NOTE]
+> [!IMPORTANT]  
 > Linux instructions are provided as general instructions for any Linux distribution. If you're using a distribution other than Debian/Ubuntu, you may need to adjust the instructions accordingly.
 >
 > For Debian/Ubuntu, just follow the macOS instructions, as they are the same.
@@ -264,9 +263,13 @@ No need to create images or containers, the framework will do that for you. Howe
 ![docker socket macOS](res/setup/macsocket.png)
 
 > [!NOTE]
-> **Linux Users:** If you're using Linux, you can install both Docker Desktop or docker-ce (Community Edition). 
+> **Linux Users:** You can install both Docker Desktop or docker-ce (Community Edition). 
 > For Docker Desktop, follow the instructions for your specific Linux distribution [here](https://docs.docker.com/desktop/install/linux-install/). 
 > For docker-ce, follow the instructions [here](https://docs.docker.com/engine/install/).
+>
+> If you're using docker-ce, you will need to add your user to the `docker` group to be able to run docker commands without sudo. You can do this by running the following command in your terminal: `sudo usermod -aG docker $USER`. Then log out and log back in for the changes to take effect.
+>
+> Login in the Docker CLI with `docker login` and provide your Docker Hub credentials.
 
 ## 3. Download Agent Zero
 - You can clone the Agent Zero repository (https://github.com/frdel/agent-zero) from GitHub if you know how to use Git. In this tutorial I will just show how to download the files.
@@ -361,8 +364,8 @@ Two scripts allows you to easily create executable files for Windows, macOS and 
 4. **Run Agent Zero:** Run Agent Zero by running the .exe file just created (Windows), or by running `./agent-zero` in your terminal window.
 
 > [!WARNING]  
-> The 2 scripts will create executable files valid only for the operative system where they are run. 
-> If you want to run Agent Zero on another machine, you will need to run the scripts on that OS as well to have your executable files.
+> The script will create executable files valid only for the operative system where they are run. 
+> If you want to run Agent Zero on another machine, you will need to run the script on that OS as well, to have your executable files.
       
 ### Conclusion
 After following the instructions for your specific operating system, you should have Agent Zero successfully installed and running. You can now start exploring the framework's capabilities and experimenting with creating your own intelligent agents. 
