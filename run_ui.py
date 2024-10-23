@@ -1,6 +1,8 @@
 import json
 from functools import wraps
 import os
+import shutil
+import subprocess
 from pathlib import Path
 import threading
 import uuid
@@ -13,7 +15,6 @@ from python.helpers.files import get_abs_path
 from python.helpers.print_style import PrintStyle
 from python.helpers.dotenv import load_dotenv
 from python.helpers import persist_chat
-
 
 # initialize the internal Flask server
 app = Flask("app", static_folder=get_abs_path("./webui"), static_url_path="/")
@@ -347,7 +348,6 @@ async def poll():
     return Response(response=response_json, status=200, mimetype="application/json")
     # return jsonify(response)
 
-
 def run():
     print("Initializing framework...")
 
@@ -367,7 +367,6 @@ def run():
     # run the server on port from .env
     port = int(os.environ.get("WEB_UI_PORT", 0)) or None
     app.run(request_handler=NoRequestLoggingWSGIRequestHandler, port=port)
-
 
 # run the internal server
 if __name__ == "__main__":
